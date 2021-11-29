@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import FootballTeam
+
+
+@admin.register(FootballTeam)
+class FootballTeam(admin.ModelAdmin):
+    list_display = ('name',)
