@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<a href="{% url 'football_teams:create' %}">Create team</a>
+<button><a href="{% url 'football_teams:create' %}">Create team</a></button>
+<button><a href="{% url 'football_teams:matches' %}">Аll matches</a></button>
+<button><a href="{% url 'football_teams:filter_matches' %}">Filter by date</a></button>
+<button><a href="{% url 'football_teams:list_team' %}">All teams</a></button>
 {% endblock %}

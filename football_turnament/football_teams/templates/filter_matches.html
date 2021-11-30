@@ -1,0 +1,31 @@
+<select id="matches">
+  <option value="empty">empty</option>
+  {% for match in matches %}
+    {% ifchanged match.date_created|date %} 
+    <option value="{{ match.date_created|date:'Y-m-d' }}">{{ match.date_created|date:'Y-m-d' }}</option>
+    {% endifchanged %}
+  {% endfor %}
+</select>
+<ol name='list_matches'></ol>
+<button><a class="btn btn-primary" href="javascript:history.back()">back</a></button>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+  $("#matches").on('change', function () {
+    $match_date = $('#matches option').filter(":selected").text();
+    $("ol[name=list_matches]").empty()
+    $.ajax({
+    url: '/football_team/filter_matches/',
+    type: "GET",
+    data: {
+      'match_date': $match_date
+    },
+    success: function (response) {
+      response.forEach(function (item) {
+        $("ol[name=list_matches]").append('<li>' + item.first_team + ' VS ' + item.second_team + '</li>');
+      });
+    },
+    dataType: 'json'
+    });
+  });
+</script>

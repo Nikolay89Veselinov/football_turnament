@@ -1,0 +1,7 @@
+<h1>Аll matches during the tournament</h1>
+<ol>
+    {% for match in object_list %}
+        <li id='match_date'>{{ match.first_team }} VS {{ match.second_team }}</li>
+    {% endfor %}
+</ol>
+<button><a class="btn btn-primary" href="javascript:history.back()">back</a></button>
